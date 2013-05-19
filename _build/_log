@@ -1,22 +1,22 @@
 ### Starting build.
 # Target: example.ml.depends, tags: { annot, debug, extension:ml, file:example.ml, ocaml, ocamldep, quiet, thread }
-/usr/bin/ocamldep -modules example.ml > example.ml.depends
+/usr/bin/ocamldep -modules example.ml > example.ml.depends # cached
 # Target: kahn.ml.depends, tags: { annot, debug, extension:ml, file:kahn.ml, ocaml, ocamldep, quiet, thread }
-/usr/bin/ocamldep -modules kahn.ml > kahn.ml.depends # cached
+/usr/bin/ocamldep -modules kahn.ml > kahn.ml.depends
 # Target: kahn.cmo, tags: { annot, byte, compile, debug, extension:cmo, extension:ml, file:kahn.cmo, file:kahn.ml, implem, ocaml, quiet, thread }
-/usr/bin/ocamlc -c -g -annot -thread -o kahn.cmo kahn.ml # cached
+/usr/bin/ocamlc -c -g -annot -thread -o kahn.cmo kahn.ml
++ /usr/bin/ocamlc -c -g -annot -thread -o kahn.cmo kahn.ml
+File "kahn.ml", line 105, characters 29-48:
+Warning 10: this expression should have type unit.
 # Target: example.cmo, tags: { annot, byte, compile, debug, extension:cmo, extension:ml, file:example.cmo, file:example.ml, implem, ocaml, quiet, thread }
-/usr/bin/ocamlc -c -g -annot -thread -o example.cmo example.ml
-+ /usr/bin/ocamlc -c -g -annot -thread -o example.cmo example.ml
-File "example.ml", line 28, characters 9-24:
-Warning 21: this statement never returns (or has an unsound type.)
+/usr/bin/ocamlc -c -g -annot -thread -o example.cmo example.ml # cached
 # Target: kahn.cmx, tags: { annot, compile, debug, extension:cmx, extension:ml, file:kahn.cmx, file:kahn.ml, implem, native, ocaml, quiet, thread }
-/usr/bin/ocamlopt -c -g -annot -thread -o kahn.cmx kahn.ml # cached
+/usr/bin/ocamlopt -c -g -annot -thread -o kahn.cmx kahn.ml
++ /usr/bin/ocamlopt -c -g -annot -thread -o kahn.cmx kahn.ml
+File "kahn.ml", line 105, characters 29-48:
+Warning 10: this expression should have type unit.
 # Target: example.cmx, tags: { annot, compile, debug, extension:cmx, extension:ml, file:example.cmx, file:example.ml, implem, native, ocaml, quiet, thread }
 /usr/bin/ocamlopt -c -g -annot -thread -o example.cmx example.ml
-+ /usr/bin/ocamlopt -c -g -annot -thread -o example.cmx example.ml
-File "example.ml", line 28, characters 9-24:
-Warning 21: this statement never returns (or has an unsound type.)
 # Target: example.native, tags: { annot, debug, dont_link_with, extension:native, file:example.native, link, native, ocaml, program, quiet, thread }
 /usr/bin/ocamlopt unix.cmxa -g threads.cmxa -thread kahn.cmx example.cmx -o example.native
 # Compilation successful.

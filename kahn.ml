@@ -17,7 +17,6 @@ module type S = sig
 end
 
 module Lib (K : S) = struct
-
   let ( >>= ) x f = K.bind x f
 
   let delay f x =
@@ -40,7 +39,7 @@ module Lib (K : S) = struct
       | [] -> K.put acc qo
       | qi :: l -> (K.get qi) >>= (fun v -> collect l (v :: acc) qo)
     in
-    let qi, qo = K.new_channel () in
+    let qi, qo =  K.new_channel () in
     K.run
       ((K.doco ((collect ports [] qo) :: workers)) >>= (fun _ -> K.get qi))
 
@@ -107,7 +106,7 @@ module Pr:S = struct
    with Child f -> (Format.printf "Enfant lance\n"; f () ; exit 0) 
 
   let return x = fun () -> x 
-  let bind p f = f (p ())
+  let bind p f () = f (p ()) ()
 
   let run p = p ()
 end
