@@ -1,1 +1,1 @@
-example.ml: Format Kahn
+example.ml: Format Kahn Printexc Random
